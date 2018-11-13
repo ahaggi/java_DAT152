@@ -1,0 +1,90 @@
+/* Bør endre demo til kode i all html */
+table.demo pre, ul.demo pre, pre.demo, table.kode pre, ul.kode pre, pre.kode {
+  margin: 10px 2px;
+  padding: 5px 10px;
+  border: 1px solid red;
+  margin: 5px;
+}
+
+div.oppgave {
+  margin: 10px 0;
+
+/*  background: #DDD;
+  padding: 10px 5px; */
+  padding: 5px 10px;
+  border: 1px solid red;
+  counter-increment: oppgnr;
+}
+
+div.losning {
+  margin: 10px 0;
+/*  background: #DDD;
+  padding: 10px 5px; */
+  padding: 5px 10px;
+  border: 1px solid blue;
+}
+
+ul.demo li > pre, ul.kode li > pre {
+   margin: 0.2em
+}
+
+table.klikkbar pre, ul.klikkbar li>pre, table.klikkbar code, ul.klikkbar li>code, pre.klikkbar {
+  color: blue;
+}
+
+table.klikkbar pre:hover, ul.klikkbar li > pre:hover {
+  color: red;
+  cursor: pointer;
+}
+
+
+/*
+*.klikkbar {
+  color: blue;
+}
+
+*.klikkbar:hover {
+  color: red;
+  cursor: pointer;
+}
+*/
+
+p.demo, div.demo, p.kode, div.kode {
+  margin: 10px 0;
+  padding: 5px 10px;
+  border: 1px solid red;
+}
+
+div.oppgave:before {
+  content: "Oppgave " counter(oppgnr) ":";
+  color: red;
+  display: block;
+}
+
+div.losning:before {
+  content: "Løsningsforslag, oppgave " counter(oppgnr) ":";
+  color: blue;
+  display: block;
+}
+
+ol>li {
+  list-style-type: lower-alpha;
+}
+
+
+ol>li ol>li {
+  list-style-type: lower-roman;
+}
+
+li.ip > p:first-child:before {
+  content: "*** ";
+  color: red;
+}
+
+ol.tall > li {list-style: decimal }
+
+td,th {
+  padding: 5px;
+}
+
+.udelt {white-space: nowrap; }

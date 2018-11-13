@@ -1,0 +1,2 @@
+serviceClass: no.hvl.dat152.client.GreetingService
+path: DC2C9B71916300B2E14160895C106EF6.gwt.rpc

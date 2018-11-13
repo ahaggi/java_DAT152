@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Mservices, deleteMember</title>
+<script type="text/javascript" src="script/config.js"></script>
+<script type="text/javascript" src="script/ajax/ajax.js"></script>
+<script type="text/javascript">
+"use strict";
+
+{
+	
+  var memberIdElm = null
+  
+  function load() {
+  	document.getElementById("deleteMember").addEventListener("click",deleteMember,false)
+  	memberIdElm = document.getElementById("memberId")
+  }
+
+  function viewMessage(m) {
+    document.getElementById("answer").textContent=m
+  }
+
+  function deleteMember(e) {
+    let url = config.servicesPath + "/member"
+    const ajax = new AJAXConnection(url)
+    ajax.onsuccess = viewMessage
+	ajax.del([memberIdElm.value])
+  }
+  
+  window.addEventListener("DOMContentLoaded",load,true)
+}
+</script>
+
+</head>
+<body>
+<h1>delete /member/{memberId}</h1>
+<form>
+<p>value of memberId: 
+<input type="text" size="3" value="" id="memberId"/></p>
+<p><button type="button" id="deleteMember">Delete member</button></p>
+</form>
+
+<p>Result:</p>
+<div id="answer"></div>
+</body>
+</body>
+</html>

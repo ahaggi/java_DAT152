@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<package name="default" extends="struts-default">
+
+		<action name="nyvareskjema"
+			class="no.hib.dat152.action.HentNyVareSkjemaAction">
+			<result>NyVareSkjema.jsp</result>
+		</action>
+
+		<action name="nyvarelagre"
+			class="no.hib.dat152.action.LagreNyVareAction">
+			<result name="success">Vareliste.jsp</result>
+			<result name="input">NyVareSkjema.jsp</result>
+		</action>
+
+	</package>
+
+</struts>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE validators PUBLIC 
+        "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+    <field name="navn">
+        <field-validator type="requiredstring">
+            <message>Varen må ha et navn</message>
+        </field-validator>
+    </field>
+    <field name="pris">
+        <field-validator type="double">
+            <param name="minInclusive">1.0</param>
+            <message>Varen må koste minst 1 krone</message>
+        </field-validator>
+    </field>
+</validators>

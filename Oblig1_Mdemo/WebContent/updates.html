@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Mservices, getUpdates</title>
+<script type="text/javascript" src="script/config.js"></script>
+<script type="text/javascript" src="script/ajax/ajax.js"></script>
+<script type="text/javascript">
+"use strict";
+
+{
+  let logIdElm = null
+  
+  function load() {
+  	document.getElementById("getUpdates").addEventListener("click",getUpdates,true)
+  	logIdElm = document.getElementById("logId")
+  }
+  
+  function viewMessage(m) {
+    document.getElementById("answer").textContent=m
+  }
+
+  function getUpdates(e) {
+    let url = config.servicesPath + "/updates"
+    const ajax = new AJAXConnection(url)
+    ajax.onsuccess = viewMessage
+	ajax.get([logIdElm.value])
+  }
+    
+  window.addEventListener("DOMContentLoaded",load,true)
+}
+</script>
+
+</head>
+<body>
+<h1>get /updates/{logId}</h1>
+<form>
+<p>Value of logId: 
+<input type="text" size="3" value="-1" id="logId"/></p>
+<p><button type="button" id="getUpdates">Send logId</button></p>
+</form>
+
+<p>Result:</p>
+<div id="answer"></div>
+</body>
+</html>

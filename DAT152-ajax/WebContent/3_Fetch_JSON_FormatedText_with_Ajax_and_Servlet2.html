@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://eple.hib.no/fag/dat152/h2017/ajax/ajax2.shtml -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="Author" content="Bjarte Kileng">
+<link href="./filer/fag.css" rel="stylesheet" type="text/css">
+<link href="./filer/oppg.css" rel="stylesheet" type="text/css">
+<title>Fetch XML document with Ajax and HTTP POST</title>
+<style type="text/css">
+table { border-collapse: collapse;}
+th span { background: rgb(255, 230, 210); }
+</style>
+</head>
+
+<body>
+<h1>Fetch XML document with Ajax and HTTP POST</h1>
+
+<p class="liste">When clicking the button of this document, the method below will be executed.
+The method asks for a JSON formatted text from the web server:</p>
+<pre class="demo">function fetchData(url) {
+  try {
+    const input=window.prompt("Data:","")
+    if (! input) return
+
+    // Formatting file name as POST data
+    const data = "data=" + encodeURIComponent(input.trim())
+
+    const xmlhttprequest = new XMLHttpRequest()
+    xmlhttprequest.open('POST', url, true)
+    /* Value true: Asynchronous, the browser will not block while fetching the XML document. */
+
+    xmlhttprequest.addEventListener("loadend",showContent,true)
+
+    // With POST, must specify mime type of data
+    xmlhttprequest.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8")
+
+    /* Send request */
+    xmlhttprequest.send(data)
+  } catch (e) {
+    console.log("Connection failed.")
+  }
+}</pre>
+
+<p>When the event <var>loadend</var> fires, the callback below is executed:</p>
+<pre class="demo">  function showContent(e) {
+  try {
+    const xmlhttp = e.target // The XMLHttpRequest instance
+    if (xmlhttp.status == 200) {
+      const xmldok = xmlhttp.responseXML // Received XML document
+      console.log(xmldok.documentElement.textContent)
+    } else {
+      // Got server response, but wrong status
+      console.log(xmlxmlhttp.status)
+    }
+  } catch(e) {
+    console.log('Caught exception: ' + e.description)
+  }
+}</pre>
+
+<p>Let us use the methods above to fetch a JSON formatted text using HTTP POST.
+
+
+<p><button type="button" id="fetchDataGET">Run fetchDataGET</button></p>
+<p><button type="button" id="fetchDataPOST">Run fetchDataPOST</button></p>
+
+
+<script type="text/javascript">
+"use strict";
+
+{
+  function fetchDataGET(url) {
+    try {
+      const input=window.prompt("Data:","")
+      if (! input) return
+
+      // Formatting file name as POST data
+      const data = "data=" + encodeURIComponent(input.trim())
+
+      const xmlhttprequest = new XMLHttpRequest()
+      xmlhttprequest.open('GET', url+"?"+ data , true)
+      /* Value true: Asynchronous, the browser will not block while fetching the XML document. */
+
+      xmlhttprequest.addEventListener("loadend",showContent,true)
+
+      /* Send request */
+      xmlhttprequest.send(null)
+    } catch (e) {
+      console.log("Connection failed.")
+    }
+  }
+
+  function fetchDataPOST(url) {
+	    try {
+	      const input=window.prompt("Navn:","")
+	      if (! input) return
+
+	      // Formatting file name as POST data
+          const data =  encodeURIComponent(input.trim())
+
+	      const xmlhttprequest = new XMLHttpRequest()
+	      xmlhttprequest.open('POST', url , true)
+	      /* Value true: Asynchronous, the browser will not block while fetching the XML document. */
+ 
+	      xmlhttprequest.addEventListener("loadend",showContent,true)
+
+	      // With POST, must specify mime type of data
+		  xmlhttprequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+	      // for å sende filer kan vi skrive multipart/form-data ("Content-type", " multipart/form-data")
+ 
+	      /* Send request */
+	      xmlhttprequest.send("id=0 &navn="+data)
+	    } catch (e) {
+	      console.log("Connection failed.")
+	    }
+	  }
+
+
+  function showContent(e) {
+    try {
+      const xmlhttp = e.target // The XMLHttpRequest instance
+      if (xmlhttp.status == 200) {
+          const jsontext = xmlhttp.responseText
+          const object = JSON.parse(jsontext)
+          console.log( JSON.stringify(object) )
+      } else {
+        // Got server response, but wrong status
+        console.log(xmlxmlhttp.status)
+      }
+    } catch(e) {
+      console.log('Caught exception: ' + e.description)
+    }
+  }
+
+  function init() {
+	    document.getElementById('fetchDataGET').addEventListener('click',function(){fetchDataGET('Fetch_jason')},true)
+	    document.getElementById('fetchDataPOST').addEventListener('click',function(){fetchDataPOST('Fetch_jason')},true)
+  }
+  window.addEventListener('load',init,true)
+}
+</script>
+
+
+</body></html>

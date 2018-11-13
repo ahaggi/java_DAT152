@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head>
+	<link rel="stylesheet" type="text/css" href="modalcss.css">
+</head>
+<body>
+	<h1>Members</h1>
+    <div>
+        <div id="memberlist"></div>
+        <p>
+            <button type="button" id="addMember">Add member</button>
+        </p>
+    </div>
+
+	<p id="logId" hidden>-1</p>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2 id="modalH2"></h2>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="modalId" value="">
+          First name: <input type="text" id="modalFName" name="fname" autofocus><br>
+          Last name: <input type="text" id="modalLName" name="lname"><br>
+          Address: <input type="text" id="modalAddress" name="add"><br>
+          Phone: <input type="text" id="modalPhone" name="pho"><br>
+          <button type="button" id="updateMember">Update member</button>
+          <button type="button" id="addMemberModal">Add member</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- JavaScript section -->
+    <script type="text/javascript" src="js/uihandler.js"></script>
+    <script type="text/javascript" src="js/appcontroller.js"></script>
+    <script type="text/javascript" src="js/modaljs.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="js/config.js"></script>
+</body>
+</html>

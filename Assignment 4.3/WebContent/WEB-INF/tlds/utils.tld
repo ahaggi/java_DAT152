@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+	<tlib-version>1.0</tlib-version>
+	<short-name>utils</short-name>
+	<uri>dat152-utils</uri>
+	<tag>
+		<description>Outputs a copyright string.</description>
+		<name>copyright</name>
+		<tag-class>no.hib.dat152.tags.Copyright</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<name>since</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Shortens a text.</description>
+		<name>shorten</name>
+		<tag-class>no.hib.dat152.tags.Shorten</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<name>length</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+</taglib>

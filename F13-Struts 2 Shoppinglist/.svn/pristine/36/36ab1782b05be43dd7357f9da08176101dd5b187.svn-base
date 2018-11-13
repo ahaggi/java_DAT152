@@ -1,0 +1,43 @@
+package no.hib.dat152.action;
+
+import no.hib.dat152.persistence.VareDAOMemorySingleton;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+/**
+ * Hent ny vareskjema action.
+ *
+ * @author Atle Geitung
+ * @author Lars-Petter Helland
+ */
+public class HentNyVareSkjemaAction extends ActionSupport {
+
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    public final String execute() {
+        setId(VareDAOMemorySingleton.getInstance().getNextId());
+        return SUCCESS;
+    }
+
+    private String id;
+
+    /**
+     * Gets the id.
+     *
+     * @return the id
+     */
+    public final String getId() {
+        return id;
+    }
+
+    /**
+     * Sets the id.
+     *
+     * @param id the id to set
+     */
+    public final void setId(final String id) {
+        this.id = id;
+    }
+
+}

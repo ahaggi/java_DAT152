@@ -1,0 +1,75 @@
+package no.hib.dat152.persistence;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import no.hib.dat152.model.Vare;
+
+/**
+ * Implementation of a Vare DAO.
+ *
+ * @author Lars-Petter Helland
+ * @author Atle Geitung
+ */
+public final class VareDAOMemorySingleton implements VareDAO {
+
+    private final List<Vare> varer = new ArrayList<Vare>();
+    private static final Integer FIRST_INDEX = 10000;
+    private Integer nextId = FIRST_INDEX;
+
+    // Singleton-greier
+    private static VareDAOMemorySingleton instance;
+
+    /**
+     * Constructs a new VareDAOMemorySingleton.
+     */
+    private VareDAOMemorySingleton() {
+    }
+
+    /**
+     * Gets the only instance of this class.
+     *
+     * @return instance
+     */
+    public static synchronized VareDAOMemorySingleton getInstance() {
+        if (instance == null) {
+            instance = new VareDAOMemorySingleton();
+        }
+        return instance;
+    }
+
+    @Override
+    public List<Vare> hentAlleVarer() {
+        return varer;
+    }
+
+    @Override
+    public Vare hentVare(final String id) {
+        final int index = varer.indexOf(new Vare(id));
+        return index >= 0 ? varer.get(index) : null;
+    }
+
+    @Override
+    public synchronized void nyVare(final Vare vare) {
+        final int index = varer.indexOf(vare);
+        if (index == -1) {
+            varer.add(vare);
+        }
+    }
+
+    @Override
+    public synchronized void oppdaterVare(final String id, final Vare varedata) {
+        final int index = varer.indexOf(new Vare(id));
+        if (index >= 0) {
+            varer.get(index).setNavn(varedata.getNavn());
+            varer.get(index).setPris(varedata.getPris());
+            varer.get(index).setBeskrivelse(varedata.getBeskrivelse());
+        }
+    }
+
+    @Override
+    public synchronized String getNextId() {
+        nextId++;
+        return nextId.toString();
+    }
+}

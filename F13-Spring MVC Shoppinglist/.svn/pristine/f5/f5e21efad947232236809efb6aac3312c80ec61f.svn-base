@@ -1,0 +1,51 @@
+package no.hib.dat152.persistence;
+
+import java.util.List;
+
+import no.hib.dat152.model.Vare;
+
+/**
+ * Interface for the data access object for Vare.
+ *
+ * @author Lars-Petter Helland
+ * @author Atle Geitung
+ */
+public interface VareDAO {
+
+    /**
+     * Find all Varer.
+     *
+     * @return all varer
+     */
+    List<Vare> hentAlleVarer();
+
+    /**
+     * Find one Vare.
+     *
+     * @param id the id
+     * @return the Vare
+     */
+    Vare hentVare(String id);
+
+    /**
+     * Insert a new Vare.
+     *
+     * @param vare the new Vare
+     */
+    void nyVare(Vare vare);
+
+    /**
+     * Update an existing Vare.
+     *
+     * @param id the id
+     * @param varedata The Vare
+     */
+    void oppdaterVare(String id, Vare varedata);
+
+    /**
+     * Return the next available id.
+     *
+     * @return id
+     */
+    String getNextId();
+}

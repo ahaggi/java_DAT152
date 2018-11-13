@@ -1,0 +1,32 @@
+<%@ page contentType="text/html"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+
+<html>
+<body>
+
+	<p>
+		<a href="<s:url action="nyvareskjema"/>">Ny vare</a>
+	</p>
+
+	<table border=1>
+		<tr>
+			<th>Id</th>
+			<th>Navn</th>
+			<th>Pris</th>
+			<th>Beskrivelse</th>
+		</tr>
+		<s:iterator value="varer">
+			<tr>
+				<td><s:property value="id" /></td>
+				<td><s:property value="navn" /></td>
+				<td><s:property value="pris" /></td>
+				<td><s:property value="beskrivelse" /></td>
+			</tr>
+		</s:iterator>
+	</table>
+
+</body>
+</html>
+
+
+

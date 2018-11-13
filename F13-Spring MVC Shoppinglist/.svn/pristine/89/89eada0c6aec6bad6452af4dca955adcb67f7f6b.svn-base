@@ -1,0 +1,33 @@
+<%@ page contentType="text/html"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<html>
+<body>
+
+	<p>
+		<a href="nyvareskjema.do">Ny vare</a>
+	</p>
+
+	<table border=1>
+		<tr>
+			<th>Id</th>
+			<th>Navn</th>
+			<th>Pris</th>
+			<th>Beskrivelse</th>
+		</tr>
+		<c:forEach var="vare" items="${varer}">
+			<tr>
+				<td>${vare.id}</td>
+				<td>${vare.navn}</td>
+				<td>${vare.pris}</td>
+				<td>${vare.beskrivelse}</td>
+				<td><a href="visvare?id=${vare.id}">Vis vare</a></td>
+			</tr>
+		</c:forEach>
+	</table>
+
+</body>
+</html>
+
+
+

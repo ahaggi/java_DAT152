@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://eple.hib.no/fag/dat152/h2017/ajax/ajax1.shtml -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="Author" content="Bjarte Kileng">
+<link href="./filer/fag.css" rel="stylesheet" type="text/css">
+<link href="./filer/oppg.css" rel="stylesheet" type="text/css">
+<title>Fetch XML document with Ajax and HTTP GET</title>
+<style type="text/css">
+table { border-collapse: collapse;}
+th span { background: rgb(255, 230, 210); }
+</style>
+</head>
+
+<body>
+<h1>Fetch XML document with Ajax and HTTP GET</h1>
+
+<p class="liste">When clicking the button of this document, the method below will be executed.
+The method asks for a XML document from the web server:</p>
+<pre class="demo">function fetchData(url) {
+  try {
+    const xmlhttprequest = new XMLHttpRequest()
+    xmlhttprequest.open('GET', url, true)
+    /* Value true: Asynchronous, the browser will not block while fetching the XML document. */
+
+    xmlhttprequest.addEventListener("loadend",showContent,true)
+
+    /* Send request */
+    xmlhttprequest.send(null)
+  } catch (e) {
+    console.log("Connection failed.")
+  }
+}</pre>
+
+<p>When the event <var>loadend</var> fires, the callback below is executed:</p>
+<pre class="demo">function showContent(e) {
+  try {
+    const xmlhttp = e.target // The XMLHttpRequest instance
+    if (xmlhttp.status == 200) {
+      const dokXML = xmlhttp.responseXML // Received XML document
+      console.log(dokXML.documentElement.textContent)
+    } else {
+      // Got server response, but wrong status
+      console.log(xmlxmlhttp.status)
+    }
+  } catch(e) {
+    console.log('Caught exception: ' + e.description)
+  }
+}</pre>
+
+<p>Let us use the methods above to fetch a XML document, <a href="./filer/adata.xml">adata.xml</a>:</p>
+<p><button type="button" id="fetchDataA">Run <code>fetchData('adata.xml')</code></button></p>
+
+<p>Let us create a new request and fetch another XML document, <a href="./filer/adata2.xml">adata2.xml</a>:</p>
+<p><button type="button" id="fetchDataB">Run <code>fetchData('adata2.xml')</code></button></p>
+
+
+
+<p class="valid">
+[<a href="http://validator.w3.org/check/referer">HTML</a>][<a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a>]
+</p>
+
+<script type="text/javascript">
+"use strict";
+
+{
+  function fetchData(url) {
+    try {
+      const xmlhttprequest = new XMLHttpRequest()
+      xmlhttprequest.open('GET', url, true)
+      /* Value true: Asynchronous, the browser will not block while fetching the XML document. */
+
+      xmlhttprequest.addEventListener("loadend",showContent,true)
+
+      /* Send request */
+      xmlhttprequest.send(null)
+    } catch (e) {
+      console.log("Connection failed.")
+    }
+  }
+
+  function showContent(e) {
+    try {
+      const xmlhttp = e.target // The XMLHttpRequest instance
+      if (xmlhttp.status == 200) {
+        const dokXML = xmlhttp.responseXML // Received XML document
+//       console.log(dokXML.getElementById("1").textContent) // spesefikk elem
+        console.log(dokXML.documentElement.textContent) // alle data
+        console.log("*************************************")
+
+      } else {
+        // Got server response, but wrong status
+        console.log(xmlxmlhttp.status)
+      }
+    } catch(e) {
+      console.log('Caught exception: ' + e.description)
+    }
+  }
+  
+  
+
+  function init() {
+    document.getElementById('fetchDataA').addEventListener('click',function(){fetchData('./filer/adata.xml')},true)
+    document.getElementById('fetchDataB').addEventListener('click',function(){fetchData('./filer/adata2.xml')},true)
+  }
+  window.addEventListener('load',init,true)
+}
+</script>
+
+
+</body></html>

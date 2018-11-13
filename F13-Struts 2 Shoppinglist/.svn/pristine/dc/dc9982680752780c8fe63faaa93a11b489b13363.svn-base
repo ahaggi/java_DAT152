@@ -1,0 +1,29 @@
+package no.hib.dat152.action;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+/**
+ * Hello world action.
+ *
+ * @author Atle Geitung
+ * @author Lars-Petter Helland
+ *
+ */
+public class HelloWorldAction extends ActionSupport {
+
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    public final String execute() {
+        return SUCCESS;
+    }
+
+    /**
+     * Get the message.
+     *
+     * @return hello world
+     */
+    public final String getMessage() {
+        return "Hello World";
+    }
+}

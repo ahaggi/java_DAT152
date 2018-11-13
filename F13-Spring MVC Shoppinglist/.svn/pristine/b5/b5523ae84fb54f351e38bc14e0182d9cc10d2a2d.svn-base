@@ -1,0 +1,32 @@
+package no.hib.dat152.controller;
+
+import no.hib.dat152.persistence.VareDAOMemorySingleton;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+/**
+ * Ny vareskjema controller.
+ *
+ * @author Atle Geitung
+ * @author Lars-Petter Helland
+ */
+@Controller
+@RequestMapping("/nyvareskjema.do")
+public class NyVareSkjemaController {
+
+    /**
+     * Controller for nytt vareskjema.
+     *
+     * @return model and view
+     */
+    @RequestMapping(method = RequestMethod.GET)
+    public final ModelAndView nyttVareskjema() {
+
+        final String id = VareDAOMemorySingleton.getInstance().getNextId();
+
+        return new ModelAndView("NyVareSkjema.jsp", "id", id);
+    }
+}

