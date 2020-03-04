@@ -1,0 +1,13 @@
+<!DOCTYPE xml>
+<Klasse>
+	<std id = "1">
+		<name>Student1</name>
+		<id>1</id>
+		<Avdeling>DATA</Avdeling>
+	</std>
+	<std id = "2">
+		<name>Student2</name>
+		<id>2</id>
+		<Avdeling>IT</Avdeling>
+	</std>
+</Klasse>
